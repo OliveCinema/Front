@@ -10,13 +10,16 @@ function Movies() {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/movies`);
-        setMovies(response.data);
+        const data = Array.isArray(response.data) ? response.data : []; // 배열 확인
+        setMovies(data);
       } catch (err) {
         console.error("Error fetching movies:", err);
+        setMovies([]); // 요청 실패 시 빈 배열로 설정
       }
     };
     fetchMovies();
   }, []);
+  
 
   return (
     <div>
