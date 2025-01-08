@@ -11,20 +11,22 @@ function Auth() {
 
   const handleRegister = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/auth/register`, { username, password });
+      await axios.post(`${API_BASE_URL}/api/auth/register`, { username, password });
       alert("Registration successful! Please log in.");
     } catch (err) {
-      setError("Registration failed: " + err.response.data.message);
+      setError("Registration failed: " + (err.response?.data?.message || "Unknown error"));
     }
   };
 
   const handleLogin = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/auth/login?username=${username}&password=${password}`);
+      await axios.post(`${API_BASE_URL}/api/auth/login`, null, {
+        params: { username, password },
+      });
       alert("Login successful!");
       navigate("/movies");
     } catch (err) {
-      setError("Login failed: " + err.response.data.message);
+      setError("Login failed: " + (err.response?.data?.message || "Unknown error"));
     }
   };
 

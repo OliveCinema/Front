@@ -5,25 +5,24 @@ import API_BASE_URL from "../config";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/movies`);
-        const data = Array.isArray(response.data) ? response.data : []; // 배열 확인
-        setMovies(data);
+        const response = await axios.get(`${API_BASE_URL}/api/movies`);
+        setMovies(response.data);
       } catch (err) {
-        console.error("Error fetching movies:", err);
-        setMovies([]); // 요청 실패 시 빈 배열로 설정
+        setError("Failed to fetch movies: " + (err.response?.data?.message || "Unknown error"));
       }
     };
     fetchMovies();
   }, []);
-  
 
   return (
     <div>
       <h1>Movies</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
