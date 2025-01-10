@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from "../config";
+import "./Seats.css";
 
 function Seats() {
   const { movieId } = useParams();
@@ -49,25 +50,26 @@ function Seats() {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Seats for Movie {movieId}</h1>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <div className="row">
+    <div className="seats-container">
+      <h1 className="seats-title">🎟️ 좌석 선택</h1>
+      {error && <p className="error-message">{error}</p>}
+      <div className="seats-grid">
         {seats.map((seat) => (
-          <div className="col-2 mb-3" key={seat.id}>
-            <button
-              className={`btn btn-${seat.reserved ? "secondary" : seat.selected ? "warning" : "success"} w-100`}
-              onClick={
-                seat.reserved
-                  ? null
-                  : seat.selected
-                  ? () => confirmReservation(seat.id)
-                  : () => selectSeat(seat.id)
-              }
-              disabled={seat.reserved}
-            >
-              {seat.seatNumber}
-            </button>
+          <div
+            className={`seat-card ${seat.reserved ? "reserved" : seat.selected ? "selected" : "available"}`}
+            key={seat.id}
+          >
+            <p>Seat {seat.seatNumber}</p>
+            {!seat.reserved && !seat.selected && (
+              <button className="seat-button" onClick={() => selectSeat(seat.id)}>
+                선택하기
+              </button>
+            )}
+            {seat.selected && !seat.reserved && (
+              <button className="confirm-button" onClick={() => confirmReservation(seat.id)}>
+                예약 확정
+              </button>
+            )}
           </div>
         ))}
       </div>

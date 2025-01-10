@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config";
+import "./Auth.css";
 
 function Auth() {
   const [username, setUsername] = useState("");
@@ -31,34 +32,33 @@ function Auth() {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Olive Cinema - Login</h1>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <div className="mb-3">
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1 className="auth-title">Olive Cinema</h1>
+        <h2 className="auth-subtitle">Welcome Back!</h2>
+        {error && <p className="error-message">{error}</p>}
         <input
+          className="auth-input"
           type="text"
-          className="form-control"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-      </div>
-      <div className="mb-3">
         <input
+          className="auth-input"
           type="password"
-          className="form-control"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
-      <div className="d-flex justify-content-between">
-        <button className="btn btn-primary" onClick={handleRegister}>
-          Register
-        </button>
-        <button className="btn btn-success" onClick={handleLogin}>
-          Login
-        </button>
+        <div className="auth-buttons">
+          <button className="auth-button register-button" onClick={handleRegister}>
+            Register
+          </button>
+          <button className="auth-button login-button" onClick={handleLogin}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );

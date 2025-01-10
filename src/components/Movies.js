@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import API_BASE_URL from "../config";
+import "./Movies.css";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -20,20 +21,22 @@ function Movies() {
   }, []);
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Olive Cinema - Movies</h1>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <div className="row">
+    <div className="movies-container">
+      <h1 className="movies-title">🎥 영화 목록</h1>
+      {error && <p className="error-message">{error}</p>}
+      <div className="movies-grid">
         {movies.map((movie) => (
-          <div className="col-md-4 mb-4" key={movie.id}>
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <Link to={`/movies/${movie.id}/seats`} className="btn btn-primary">
-                  View Seats
-                </Link>
-              </div>
-            </div>
+          <div className="movie-card" key={movie.id}>
+            <img
+              className="movie-poster"
+              src={movie.posterUrl || "https://via.placeholder.com/150"}
+              alt={movie.title}
+            />
+            <h2 className="movie-title">{movie.title}</h2>
+            <p className="movie-description">{movie.description || "No description available."}</p>
+            <Link to={`/movies/${movie.id}/seats`} className="view-seats-button">
+              예매하기
+            </Link>
           </div>
         ))}
       </div>

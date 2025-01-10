@@ -1,0 +1,83 @@
+.seats-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .seats-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .seats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center;
+  }
+  
+  .seat-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .seat-card.available:hover {
+    transform: translateY(-5px);
+    background-color: #e9f5e9;
+  }
+  
+  .seat-card.reserved {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .seat-card.selected {
+    background-color: #ffeeba;
+    color: #856404;
+  }
+  
+  .seat-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+  
+  .seat-button,
+  .confirm-button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .seat-button {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+  .seat-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .confirm-button {
+    background-color: #28a745;
+    color: #ffffff;
+  }
+  
+  .confirm-button:hover {
+    background-color: #1e7e34;
+  }
+  
