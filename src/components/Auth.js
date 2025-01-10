@@ -31,25 +31,35 @@ function Auth() {
   };
 
   return (
-    <div>
-      <h1>Auth</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <button onClick={handleRegister}>Register</button>
-      <button onClick={handleLogin}>Login</button>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4">Olive Cinema - Login</h1>
+      {error && <div className="alert alert-danger">{error}</div>}
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="password"
+          className="form-control"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <div className="d-flex justify-content-between">
+        <button className="btn btn-primary" onClick={handleRegister}>
+          Register
+        </button>
+        <button className="btn btn-success" onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }

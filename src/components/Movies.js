@@ -20,17 +20,23 @@ function Movies() {
   }, []);
 
   return (
-    <div>
-      <h1>Movies</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4">Olive Cinema - Movies</h1>
+      {error && <div className="alert alert-danger">{error}</div>}
+      <div className="row">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <p>{movie.title}</p>
-            <Link to={`/movies/${movie.id}/seats`}>View Seats</Link>
-          </li>
+          <div className="col-md-4 mb-4" key={movie.id}>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{movie.title}</h5>
+                <Link to={`/movies/${movie.id}/seats`} className="btn btn-primary">
+                  View Seats
+                </Link>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
